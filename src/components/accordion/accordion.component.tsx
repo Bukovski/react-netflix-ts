@@ -14,7 +14,6 @@ interface IContextState {
 }
 
 
-
 const ToggleContext = createContext<Partial<IContextState>>({});
 
 function Accordion({ children, ...restProps }: IAccordion) {
@@ -49,11 +48,11 @@ Accordion.Header = function AccordionHeader({ children, ...restProps }: IAccordi
   return (
     <Header onClick={() => setToggleShow!(!toggleShow)} { ...restProps }>
       { children }
-      {toggleShow ? (
-        <img src="/images/icons/close-slim.png" alt="Close" />
-      ) : (
-        <img src="/images/icons/add.png" alt="Open" />
-      )}
+      {
+        toggleShow
+          ? ( <img src="/images/icons/close-slim.png" alt="Close" /> )
+          : ( <img src="/images/icons/add.png" alt="Open" /> )
+      }
     </Header>
   );
 };
@@ -64,7 +63,7 @@ Accordion.Body = function AccordionBody({ children, ...restProps }: IAccordion) 
   /* return toggleShow ? <Body { ...restProps }>{ children }</Body> : null; */
 
   return (
-    <Body className={toggleShow ? 'open' : 'closed'} { ...restProps }>
+    <Body className={ toggleShow ? 'open' : 'closed' } { ...restProps }>
       <span>{ children }</span>
     </Body>
   );
