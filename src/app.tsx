@@ -1,5 +1,5 @@
 import React from 'react';
-import { FooterContainer, JumbotronContainer } from "./containers";
+import { FaqsContainer, FooterContainer, JumbotronContainer } from "./containers";
 
 
 const App = () => {
@@ -7,6 +7,7 @@ const App = () => {
     <>
       <JumbotronContainer/>
 
+      <FaqsContainer />
       <FooterContainer />
     </>
   );
