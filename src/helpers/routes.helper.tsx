@@ -2,10 +2,15 @@ import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
 
+interface IUser {
+  uid: string
+  createdAt: string
+  displayName: string
+  email: string
+}
+
 interface IPathProtection {
-  user?: {
-    name: string
-  } | null,
+  user: IUser | null,
   loggedInPath?: string,
   children: JSX.Element | JSX.Element[] | React.ReactNode,
   [ restProps: string ]: any
