@@ -13,4 +13,15 @@ export interface IJumboJson {
   direction: string;
 }
 
+export interface IFirebaseCollection {
+  id: string,
+  title: string,
+  description: string,
+  genre: string,
+  maturity: string,
+  slug: string,
+}
 
+export interface ISelectFilterData extends IFirebaseCollection {
+  docId: string;
+}
