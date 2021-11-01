@@ -25,3 +25,8 @@ export interface IFirebaseCollection {
 export interface ISelectFilterData extends IFirebaseCollection {
   docId: string;
 }
+
+export interface IProfileState {
+  displayName: string,
+  photoURL: string
+}
