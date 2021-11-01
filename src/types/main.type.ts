@@ -26,10 +26,16 @@ export interface ISelectFilterData extends IFirebaseCollection {
   docId: string;
 }
 
+export interface ISlideRows {
+  title: string;
+  data: ISelectFilterData[];
+}
+
 export interface IProfileState {
   displayName: string,
   photoURL: string
 }
+
 
 
 

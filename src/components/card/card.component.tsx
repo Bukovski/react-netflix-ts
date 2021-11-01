@@ -3,6 +3,7 @@ import React, { useState, useContext, createContext } from 'react';
 import { Container, Group, Title, SubTitle, Text, Feature,
   FeatureTitle, FeatureText, FeatureClose, Maturity, Content,
   Meta, Entities, Item, Image } from './card.style';
+import { ISelectFilterData, ISlideRows } from "../../types/main.type";
 
 
 interface ICard {
@@ -14,15 +15,15 @@ interface ICard {
 interface IContextState {
   showFeature: boolean,
   setShowFeature: React.Dispatch<React.SetStateAction<boolean>>,
-  itemFeature: any,
-  setItemFeature: React.Dispatch<React.SetStateAction<any>>,
+  itemFeature: ISelectFilterData,
+  setItemFeature: React.Dispatch<React.SetStateAction<ISelectFilterData>>,
 }
 
 export const FeatureContext = createContext<Partial<IContextState>>({});
 
 function Card({ children, ...restProps }: ICard) {
   const [ showFeature, setShowFeature ] = useState(false);
-  const [ itemFeature, setItemFeature ] = useState({});
+  const [ itemFeature, setItemFeature ] = useState({} as ISelectFilterData);
 
   return (
     <FeatureContext.Provider value={{ showFeature, setShowFeature, itemFeature, setItemFeature }}>
@@ -78,17 +79,17 @@ Card.Image = function CardImage({ ...restProps }: ICard) {
 Card.Feature = function CardFeature({ children, category, ...restProps }: ICard) {
   const { showFeature, itemFeature, setShowFeature } = useContext(FeatureContext);
 
-  return showFeature
-    ? ( <Feature { ...restProps } src={`/images/${ category }/${itemFeature.genre}/${itemFeature.slug}/large.jpg`}>
+  return showFeature && itemFeature
+    ? ( <Feature { ...restProps } src={`/images/${ category }/${ itemFeature.genre }/${ itemFeature.slug }/large.jpg`}>
       <Content>
-        <FeatureTitle>{itemFeature.title}</FeatureTitle>
-        <FeatureText>{itemFeature.description}</FeatureText>
+        <FeatureTitle>{ itemFeature.title }</FeatureTitle>
+        <FeatureText>{ itemFeature.description }</FeatureText>
         <FeatureClose onClick={ () => setShowFeature!(false) }>
           <img src="/images/icons/close.png" alt="Close" />
         </FeatureClose>
 
         <Group margin="30px 0" flexDirection="row" alignItems="center">
-          <Maturity rating={ itemFeature.maturity }>{ itemFeature.maturity < 12
+          <Maturity rating={ itemFeature.maturity }>{ itemFeature.maturity < "12"
             ? 'PG'
             : itemFeature.maturity
           }</Maturity>

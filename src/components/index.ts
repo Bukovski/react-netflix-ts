@@ -8,3 +8,4 @@ export { default as Form } from './form/form.component';
 export { default as Profiles } from './profiles/profile.component';
 export { default as Loading } from './loading/loading.component';
 export { default as Card } from './card/card.component';
+export { default as Player } from './player/player.component';

@@ -189,8 +189,8 @@ export const Content = styled.div`
   }
 `;
 
-export const Maturity = styled.div<{ rating: number }>`
-  background-color: ${({ rating }) => (rating >= 15 ? '#f44336' : '#2f9600')};
+export const Maturity = styled.div<{ rating: string }>`
+  background-color: ${({ rating }) => (rating >= "15" ? '#f44336' : '#2f9600')};
   border-radius: 15px;
   width: 28px;
   line-height: 28px;

@@ -3,15 +3,11 @@ import Fuse from "fuse.js";
 import logo from '../assets/logo.svg';
 import { FirebaseContext } from '../context/firebase.context';
 import { RouteConstants } from '../types/routes.type';
-import { IProfileState, ISelectFilterData } from "../types/main.type";
-import { Card, Header, Loading } from '../components';
+import { IProfileState, ISlideRows } from "../types/main.type";
+import { Card, Header, Loading, Player } from '../components';
 import { SelectProfileContainer, FooterContainer } from './index';
 
 
-export interface ISlideRows {
-  title: string;
-  data: ISelectFilterData[];
-}
 
 interface IBrowseContainerProps {
   slides: {
@@ -133,7 +129,10 @@ export default function BrowseContainer({ slides }: IBrowseContainerProps) {
             </Card.Entities>
 
             <Card.Feature category={ category }>
-
+              <Player>
+                <Player.Button />
+                <Player.Video src="/videos/bunny.mp4" />
+              </Player>
             </Card.Feature>
           </Card>
         )) }
