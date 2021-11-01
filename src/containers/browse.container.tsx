@@ -3,7 +3,7 @@ import logo from '../assets/logo.svg';
 import { FirebaseContext } from '../context/firebase.context';
 import { RouteConstants } from '../types/routes.type';
 import { IProfileState, ISelectFilterData } from "../types/main.type";
-import { Header } from '../components';
+import { Header, Loading } from '../components';
 import { SelectProfileContainer, FooterContainer } from './index';
 
 
@@ -33,8 +33,8 @@ export default function BrowseContainer({ slides }: IBrowseContainerProps) {
   return ("displayName" in profile && profile.displayName)
     ? (<>
       { loading
-        ? <div>Loading...</div>
-        : ""
+        ? <Loading src={ user.photoURL } />
+        : <Loading.ReleaseBody />
       }
 
       <Header src="joker1" dontShowOnSmallViewPort>
