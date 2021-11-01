@@ -1,16 +1,22 @@
 import React, { useState, useEffect, useContext } from 'react';
+import Fuse from "fuse.js";
 import logo from '../assets/logo.svg';
 import { FirebaseContext } from '../context/firebase.context';
 import { RouteConstants } from '../types/routes.type';
 import { IProfileState, ISelectFilterData } from "../types/main.type";
-import { Header, Loading } from '../components';
+import { Card, Header, Loading } from '../components';
 import { SelectProfileContainer, FooterContainer } from './index';
 
 
+export interface ISlideRows {
+  title: string;
+  data: ISelectFilterData[];
+}
+
 interface IBrowseContainerProps {
   slides: {
-    series : ISelectFilterData[],
-    films : ISelectFilterData[]
+    series : ISlideRows[],
+    films : ISlideRows[]
   }
 }
 
@@ -19,6 +25,7 @@ export default function BrowseContainer({ slides }: IBrowseContainerProps) {
   const [ profile, setProfile ] = useState<IProfileState | {}>({});
   const [ loading, setLoading ] = useState<boolean>(true);
   const [ searchTerm, setSearchTerm ] = useState<string>('');
+  const [ slideRows, setSlideRows ] = useState<ISlideRows[] | []>([]);
 
   const { firebase } = useContext(FirebaseContext);
   const user = firebase.auth().currentUser || {};
@@ -28,6 +35,23 @@ export default function BrowseContainer({ slides }: IBrowseContainerProps) {
       setLoading(false);
     }, 3000);
   }, [ profile ]);
+
+  useEffect(() => {
+    // @ts-ignore
+    setSlideRows(slides[ category ]);
+  }, [ slides, category ]);
+
+  useEffect(() => {
+    const fuse = new Fuse(slideRows, { keys: [ 'data.description', 'data.title', 'data.genre' ] });
+    const results = fuse.search(searchTerm).map(({ item }) => item);
+
+    if (slideRows.length > 0 && searchTerm.length > 3 && results.length > 0) {
+      setSlideRows(results);
+    } else {
+      // @ts-ignore
+      setSlideRows(slides[ category ]);
+    }
+  }, [ searchTerm ]);
 
 
   return ("displayName" in profile && profile.displayName)
@@ -91,6 +115,29 @@ export default function BrowseContainer({ slides }: IBrowseContainerProps) {
           <Header.PlayButton>Play</Header.PlayButton>
         </Header.Feature>
       </Header>
+
+      <Card.Group>
+        { slideRows.map((slideItem) => (
+          <Card key={`${ category }-${ slideItem.title.toLowerCase() }`}>
+            <Card.Title>{ slideItem.title }</Card.Title>
+            <Card.Entities>
+              { slideItem.data.map((item) => (
+                <Card.Item key={ item.docId } item={ item }>
+                  <Card.Image src={`/images/${ category }/${ item.genre }/${ item.slug }/small.jpg` } />
+                  <Card.Meta>
+                    <Card.SubTitle>{ item.title }</Card.SubTitle>
+                    <Card.Text>{ item.description }</Card.Text>
+                  </Card.Meta>
+                </Card.Item>
+              )) }
+            </Card.Entities>
+
+            <Card.Feature category={ category }>
+
+            </Card.Feature>
+          </Card>
+        )) }
+      </Card.Group>
 
       <FooterContainer />
     </>)
