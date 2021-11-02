@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 
 import { IsUserRedirect, ProtectedRoute } from './helpers/routes.helper';
 import { Home, Browse, SignIn, SignUp } from "./pages";
@@ -9,7 +9,7 @@ import { useAuthListener } from "./hooks";
 
 const App = () => {
   const { user } = useAuthListener();
-  console.log(user)
+
 
   return (
     <Router>
