@@ -3,7 +3,7 @@ import React, { useState, useContext, createContext } from 'react';
 import { Container, Group, Title, SubTitle, Text, Feature,
   FeatureTitle, FeatureText, FeatureClose, Maturity, Content,
   Meta, Entities, Item, Image } from './card.style';
-import { ISelectFilterData, ISlideRows } from "../../types/main.type";
+import { ISelectFilterData } from "../../types/main.type";
 
 
 interface ICard {
@@ -80,12 +80,15 @@ Card.Feature = function CardFeature({ children, category, ...restProps }: ICard)
   const { showFeature, itemFeature, setShowFeature } = useContext(FeatureContext);
 
   return showFeature && itemFeature
-    ? ( <Feature { ...restProps } src={`/images/${ category }/${ itemFeature.genre }/${ itemFeature.slug }/large.jpg`}>
+    ? ( <Feature
+      { ...restProps }
+      src={ `${ process.env.PUBLIC_URL }/images/${ category }/${ itemFeature.genre }/${ itemFeature.slug }/large.jpg` }
+    >
       <Content>
         <FeatureTitle>{ itemFeature.title }</FeatureTitle>
         <FeatureText>{ itemFeature.description }</FeatureText>
         <FeatureClose onClick={ () => setShowFeature!(false) }>
-          <img src="/images/icons/close.png" alt="Close" />
+          <img src={ `${ process.env.PUBLIC_URL }/images/icons/close.png` } alt="Close" />
         </FeatureClose>
 
         <Group margin="30px 0" flexDirection="row" alignItems="center">

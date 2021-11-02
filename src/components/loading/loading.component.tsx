@@ -11,7 +11,7 @@ export default function Loading({ src, ...restProps }: ILoading) {
   return (
     <Spinner {...restProps}>
       <LockBody />
-      <Picture src={`/images/users/${ src }.png`} data-testid="loading-picture" />
+      <Picture src={`${ process.env.PUBLIC_URL }/images/users/${ src }.png`} data-testid="loading-picture" />
     </Spinner>
   );
 }

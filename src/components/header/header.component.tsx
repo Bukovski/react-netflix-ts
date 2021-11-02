@@ -43,18 +43,18 @@ Header.Logo = function HeaderLogo({ to, ...restProps }: IHeader) {
 };
 
 Header.Search = function HeaderSearch({ searchTerm, setSearchTerm, ...restProps }: IHeader) {
-  const [searchActive, setSearchActive] = useState(false);
+  const [ searchActive, setSearchActive ] = useState(false);
 
   return (
     <Search { ...restProps }>
-      <SearchIcon onClick={() => setSearchActive((searchActive) => !searchActive)} data-testid="search-click">
-        <img src="/images/icons/search.png" alt="Search" />
+      <SearchIcon onClick={ () => setSearchActive((searchActive) => !searchActive) } data-testid="search-click">
+        <img src={ `${ process.env.PUBLIC_URL }/images/icons/search.png` } alt="Search" />
       </SearchIcon>
       <SearchInput
         value={ searchTerm }
-        onChange={({ target }) => setSearchTerm(target.value)}
+        onChange={ ({ target }) => setSearchTerm(target.value) }
         placeholder="Search films and series"
-        active={searchActive}
+        active={ searchActive }
         data-testid="search-input"
       />
     </Search>
@@ -70,7 +70,7 @@ Header.Feature = function HeaderFeature({ children, ...restProps }: IHeader) {
 };
 
 Header.Picture = function HeaderPicture({ src, ...restProps }: IHeader) {
-  return <Picture { ...restProps } src={`/images/users/${src}.png`} />;
+  return <Picture { ...restProps } src={ `${ process.env.PUBLIC_URL }/images/users/${ src }.png` } />;
 };
 
 Header.Dropdown = function HeaderDropdown({ children, ...restProps }: IHeader) {

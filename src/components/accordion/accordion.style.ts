@@ -23,7 +23,7 @@ export const Title = styled.h1`
   line-height: 1.1;
   margin-top: 0;
   margin-bottom: 8px;
-  color: white;
+  color: #fff;
   text-align: center;
 
   @media (max-width: 600px) {
@@ -32,7 +32,7 @@ export const Title = styled.h1`
 `;
 
 export const Item = styled.div`
-  color: white;
+  color: #fff;
   margin: auto;
   margin-bottom: 10px;
   max-width: 728px;

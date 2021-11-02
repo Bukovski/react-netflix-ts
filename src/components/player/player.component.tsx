@@ -34,7 +34,7 @@ Player.Video = function PlayerVideo({ src, ...restProps }: IPlayer) {
         <Overlay onClick={ () => setShowPlayer!(false) } data-testid="player">
           <Inner>
             <video id="netflix-player" controls>
-              <source src={ src } type="video/mp4" />
+              <source src={ process.env.PUBLIC_URL + src } type="video/mp4" />
             </video>
             <Close />
           </Inner>

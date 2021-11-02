@@ -30,6 +30,7 @@ npm run start
 - [react-router-dom](https://github.com/remix-run/react-router) fully-featured routing library for the React
 - [firebase](https://firebase.google.com/docs/web/setup) contains the database for the application
 - [fuse.js](https://fusejs.io/) dynamic search for app
+- [gh-pages](https://github.com/tschaub/gh-pages) publish files on GitHub live page
 
 ![sign-in-page](./screenshots/sign-in-page.jpg)
 ![series-page](./screenshots/series-page.jpg)
