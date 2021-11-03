@@ -5,7 +5,8 @@ React Netflix TypeScript
 </p>
 </h1>
 
-This is a clone of the popular Netflix website with reduced functionality.When you log in to a web site, create a new user or use an existing user `test@test.com 112233` enter the closed page of the movie list. Information about authorized users is stored in `localStorage`. Use the `styled-component` to model the component and subdivide it into small pieces. The data is stored on a remote `firebase server`.
+This is a clone of the popular Netflix website with reduced functionality.When you log in to a web site, create a new user or use an existing user `test@test.com 112233` enter the closed page of the movie list. Information about authorized users is stored in `localStorage`. Use the `styled-component` to model the component and subdivide it into small pieces. The data is stored on a remote `firebase server`. Movie `search` will quickly find the desired one from the list of categories
+
 
 ## Installation and Running
 
