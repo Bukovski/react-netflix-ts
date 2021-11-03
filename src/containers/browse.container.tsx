@@ -41,22 +41,29 @@ export default function BrowseContainer({ slides }: IBrowseContainerProps) {
     const fuse = new Fuse(slideRows, {
       keys: [ 'data.description', 'data.title', 'data.genre' ]
     });
-    const results = fuse.search(searchTerm).map(({ item }) => {
+
+    const results: ISlideRows[] = fuse.search(searchTerm).map(({ item }) => {
       // return item;
       return {
         ...item,
-        data: item.data.filter(({ title, description }) => (description + title).toLowerCase().includes(searchTerm.toLowerCase()))
+        data: item.data.filter(({ title, description }) => (
+          (description + title).toLowerCase()
+            .includes(searchTerm.toLowerCase()))
+        )
       };
-    });
+    })
 
+    shouldSlidesUpdate(results);
 
-    if (slideRows.length > 2 && results.length > 0) {
-      setSlideRows(results);
-    } else {
-      // @ts-ignore
-      setSlideRows(slides[ category ]);
-    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ searchTerm ]);
+
+
+  const shouldSlidesUpdate = (results: ISlideRows[]) => (slideRows.length > 2 && results.length > 0)
+    ? setSlideRows(results)
+    // @ts-ignore
+    : setSlideRows(slides[ category ])
+
 
 
   return ("displayName" in profile && profile.displayName)

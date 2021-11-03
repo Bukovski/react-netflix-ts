@@ -30,7 +30,7 @@ export default function useContent(target: string) {
       .catch((error: { message: string; }) => {
         console.log(error.message);
       });
-  }, []);
+  }, [ firebase, target ]);
 
   return { [ target ]: content };
 }

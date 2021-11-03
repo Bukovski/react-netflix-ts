@@ -48,7 +48,7 @@ Player.Button = function PlayerButton({ ...restProps }: IPlayer) {
   const { showPlayer, setShowPlayer } = useContext(PlayerContext);
 
   return (
-    <Button onClick={ () => setShowPlayer!((showPlayer) => !showPlayer) } { ...restProps }>
+    <Button onClick={ () => setShowPlayer!(!showPlayer) } { ...restProps }>
       Play
     </Button>
   );
