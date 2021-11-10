@@ -19,6 +19,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:coverage": "CI=true npm test -- --env=jsdom --coverage",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
@@ -64,6 +65,37 @@
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
+    ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "<rootDir>/src/**/*.{js,jsx,ts,tsx}",
+      "!<rootDir>/node_modules/",
+      "!<rootDir>/src/app.tsx",
+      "!<rootDir>/src/global-styles.ts",
+      "!<rootDir>/src/helpers/routes.tsx",
+      "!<rootDir>/src/lib/firebase.prod.ts",
+      "!<rootDir>/src/lib/seed.ts",
+      "!<rootDir>/src/index.tsx",
+      "!<rootDir>/src/utils/index.ts",
+      "!<rootDir>/src/pages/index.ts",
+      "!<rootDir>/src/components/index.ts",
+      "!<rootDir>/src/containers/index.ts",
+      "!<rootDir>/src/hooks/*.{ts,tsx}",
+      "!<rootDir>/src/context/*.{ts,tsx}",
+      "!<rootDir>/src/types/*.{ts,tsx}"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    },
+    "coverageReporters": [
+      "html",
+      "text"
     ]
   }
 }
