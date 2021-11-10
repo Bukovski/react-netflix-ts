@@ -5,7 +5,6 @@ React Netflix TypeScript
 </p>
 </h1>
 
-[![Coverage Status](https://coveralls.io/repos/github/Bukovski/react-netflix-ts/badge.svg?branch=main)](https://coveralls.io/github/Bukovski/react-netflix-ts?branch=main)
 
 This is a clone of the popular Netflix website with reduced functionality.When you log in to a web site, create a new user or use an existing user `test@test.com 112233` enter the closed page of the movie list. Information about authorized users is stored in `localStorage`. Use the `styled-component` to model the component and subdivide it into small pieces. The data is stored on a remote `firebase server`. Movie `search` will quickly find the desired one from the list of categories
 
@@ -34,7 +33,7 @@ npm run start
 - [firebase](https://firebase.google.com/docs/web/setup) contains the database for the application
 - [fuse.js](https://fusejs.io/) dynamic search for app
 - [gh-pages](https://github.com/tschaub/gh-pages) publish files on GitHub live page
-- [coveralls](https://github.com/nickmerwin/node-coveralls) - coverage reporting of [coveralls.io](https://coveralls.io/) and add a cool coverage button
+
 
 ![sign-in-page](./screenshots/sign-in-page.jpg)
 ![series-page](./screenshots/series-page.jpg)
