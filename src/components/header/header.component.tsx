@@ -34,7 +34,7 @@ Header.Group = function HeaderGroup({ children, ...restProps }: IHeader) {
   return <Group { ...restProps }>{ children }</Group>;
 };
 
-Header.Logo = function HeaderLogo({ to, ...restProps }: IHeader) {
+Header.Logo = function HeaderLogo({ to = "/", ...restProps }: IHeader) {
   return (
     <ReachRouterLink to={to}>
       <Logo { ...restProps } />
