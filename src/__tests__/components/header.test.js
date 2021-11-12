@@ -5,7 +5,7 @@ import { Header } from '../../components';
 
 
 jest.mock("react-router-dom", () => ({
-  ...jest.requireActual("react-router-dom"), // use actual for all non-hook parts
+  ...jest.requireActual("react-router-dom"),
   useParams: jest.fn(),
 }));
 

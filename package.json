@@ -96,8 +96,7 @@
     },
     "coverageReporters": [
       "html",
-      "text",
-      "lcov"
+      "text"
     ]
   }
 }
