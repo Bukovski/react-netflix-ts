@@ -6,7 +6,9 @@ interface ISelectFilter {
   films: ISelectFilterData[],
 }
 
-export default function selectionFilter({ series, films }: ISelectFilter) {
+export default function selectionFilter(data = { series: [], films: [] }) {
+  const { series, films }: ISelectFilter = data;
+
   return {
     series: [
       { title: 'Documentaries', data: series?.filter((item) => item.genre === 'documentaries') },
