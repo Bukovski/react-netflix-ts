@@ -14,6 +14,7 @@
 
 # test coverage
 /coverage
+.coveralls.yml
 
 # misc
 .DS_Store
