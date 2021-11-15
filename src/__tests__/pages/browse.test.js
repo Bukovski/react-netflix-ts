@@ -1,5 +1,6 @@
 import React from 'react';
-import { act, fireEvent, render, screen } from '@testing-library/react';
+import Fuse from "fuse.js";
+import { fireEvent, render, screen } from '@testing-library/react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Browse } from '../../pages';
 import { FirebaseContext } from '../../context/firebase.context';
@@ -33,7 +34,7 @@ jest.mock('../../utils', () => ({
             genre: 'crime',
             maturity: '18',
             slug: 'making-a-murderer',
-          },
+          }
         ],
       },
     ],
@@ -105,6 +106,34 @@ describe('<Browse />', () => {
     expect(screen.queryByText("Amanda Knox")).toBeFalsy();
   });
   
+  it('firebase data without currentUser', () => {
+    const signOutFn = jest.fn(() => Promise.resolve('I am signed out!'));
+    const firebase = {
+      auth: jest.fn(() => ({
+        signOut: signOutFn,
+      })),
+      firestore: jest.fn(() => ({
+        collection: jest.fn(() => ({
+          get: jest.fn(() => Promise.resolve('I get content!')),
+          add: jest.fn(() => Promise.resolve('I add content!')),
+        })),
+      })),
+    };
+    
+    render(
+      <Router>
+        <FirebaseContext.Provider value={{ firebase }}>
+          <Browse />
+        </FirebaseContext.Provider>
+      </Router>
+    )
+    
+    fireEvent.click(screen.getByTestId("user-profile"));
+    
+    expect(screen.getByText("Who's watching?"));
+    expect(screen.queryByText("Karl")).toBeNull();
+  });
+  
   it('search movie field', async () => {
     const firebase = {
       auth: jest.fn(() => ({
@@ -137,8 +166,13 @@ describe('<Browse />', () => {
       screen.getByTestId("search-input"),
       { target: { value: 'Murd' } }
     );
-  
     expect(screen.getByPlaceholderText('Search films and series').value).toBe('Murd');
+    
+    await fireEvent.change(
+      screen.getByTestId("search-input"),
+      { target: { value: 'Not exists' } }
+    );
+    expect(screen.getByPlaceholderText('Search films and series').value).toBe('Not exists');
   });
   
   it('signOut from login account', () => {

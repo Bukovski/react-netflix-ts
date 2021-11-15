@@ -42,7 +42,9 @@ export default function BrowseContainer({ slides }: IBrowseContainerProps) {
       keys: [ 'data.description', 'data.title', 'data.genre' ]
     });
 
-    const results: ISlideRows[] = fuse.search(searchTerm).map(({ item }) => {
+    const fuseSearch = fuse.search(searchTerm) || [];
+
+    const results: ISlideRows[] = fuseSearch.map(({ item }) => {
       // return item;
       return {
         ...item,
