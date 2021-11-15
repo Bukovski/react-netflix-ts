@@ -74,7 +74,7 @@
       "!<rootDir>/node_modules/",
       "!<rootDir>/src/app.tsx",
       "!<rootDir>/src/global-styles.ts",
-      "!<rootDir>/src/helpers/routes.tsx",
+      "!<rootDir>/src/helpers/routes.helper.tsx",
       "!<rootDir>/src/lib/firebase.prod.ts",
       "!<rootDir>/src/lib/seed.ts",
       "!<rootDir>/src/index.tsx",
